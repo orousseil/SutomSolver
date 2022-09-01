@@ -1,0 +1,3 @@
+#! /bin/bash
+RUN="java -classpath ./target/classes SutomSolver ${1} ${2}"
+${RUN}
