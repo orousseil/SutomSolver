@@ -9,7 +9,7 @@ mvn compile
 
 ## Run
 
-Exemple de mot a trouver = USINAGE
+Exemple de mot à trouver = USINAGE
 
 ### 1ier appel
 Seule la premiere lettre est connue, on remplace les lettres inconnues par un tiret '-'.
