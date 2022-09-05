@@ -38,4 +38,15 @@ public class StringUtils {
         return true;
     }
 
+    public static boolean notContainsAllLetters(final String str, final String letters) {
+        String lettersToUpperCase = letters.toUpperCase();
+        String strToUpperCase = str.toUpperCase();
+        for (int i = 0; i < letters.length(); i++) {
+            if (strToUpperCase.indexOf(lettersToUpperCase.charAt(i)) != -1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

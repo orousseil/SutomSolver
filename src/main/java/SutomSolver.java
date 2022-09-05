@@ -60,7 +60,7 @@ public class SutomSolver {
                 String word = unaccent(line).toUpperCase();
                 if (!word.contains("'") && !word.contains("-") && word.matches(regexp)
                         && (missplacedLetters.length() == 0 || StringUtils.containsAllLetters(word, missplacedLetters))
-                        && (missingLetters.length() == 0 || !StringUtils.containsAllLetters(word, missingLetters))) {
+                        && (missingLetters.length() == 0 || StringUtils.notContainsAllLetters(word, missingLetters))) {
                     var wordPoposal = new WordPoposal(word);
                     computeScore(wordPoposal);
                     proposals.add(wordPoposal);
