@@ -78,6 +78,8 @@ public class SutomSolver {
                 .collect(Collectors.toList());
         double factor = 1.0;
         double score = letters.stream().mapToDouble(letter -> letter.getFreq() * factor).sum();
+        // on ajoute au score des fréquences le nombre de voyelles distinctes
+        score += countDistinctVowel(wordPoposal.getWord());
         wordPoposal.setScore(score);
     }
 

@@ -49,4 +49,28 @@ public class StringUtils {
         return true;
     }
 
+    public static double countDistinctVowel(final String in) {
+        String str = unaccent(in).toUpperCase();
+        double res = 0.0;
+        if (str.contains("A")) {
+            res += 1.0;
+        }
+        if (str.contains("E")) {
+            res += 1.0;
+        }
+        if (str.contains("I")) {
+            res += 1.0;
+        }
+        if (str.contains("O")) {
+            res += 1.0;
+        }
+        if (str.contains("U")) {
+            res += 1.0;
+        }
+        if (str.contains("Y")) {
+            res += 1.0;
+        }
+        return res;
+    }
+
 }
