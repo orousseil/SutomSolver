@@ -1,9 +1,9 @@
-public class WordPoposal {
+public class WordProposal {
 
     private String word;
     private double score;
 
-    public WordPoposal(String word) {
+    public WordProposal(String word) {
         this.word = word;
     }
 

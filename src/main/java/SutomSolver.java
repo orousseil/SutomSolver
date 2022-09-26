@@ -21,7 +21,7 @@ public class SutomSolver {
     private int wordSize;
     private int numberOfProposals;
 
-    private List<WordPoposal> proposals = new ArrayList<>();
+    private List<WordProposal> proposals = new ArrayList<>();
 
     public static void main(String[] args) {
         if (args.length == 0 || args.length > 2) {
@@ -61,7 +61,7 @@ public class SutomSolver {
                 if (!word.contains("'") && !word.contains("-") && word.matches(regexp)
                         && (missplacedLetters.length() == 0 || StringUtils.containsAllLetters(word, missplacedLetters))
                         && (missingLetters.length() == 0 || StringUtils.notContainsAllLetters(word, missingLetters))) {
-                    var wordPoposal = new WordPoposal(word);
+                    var wordPoposal = new WordProposal(word);
                     computeScore(wordPoposal);
                     proposals.add(wordPoposal);
                 }
@@ -71,16 +71,16 @@ public class SutomSolver {
         }
     }
 
-    private void computeScore(WordPoposal wordPoposal) {
-        var letters = wordPoposal.getWord().chars()
+    private void computeScore(WordProposal wordProposal) {
+        var letters = wordProposal.getWord().chars()
                 .mapToObj(i -> LetterFrequency.valueOf(String.valueOf((char) i)))
                 .distinct()
                 .collect(Collectors.toList());
         double factor = 1.0;
         double score = letters.stream().mapToDouble(letter -> letter.getFreq() * factor).sum();
         // on ajoute au score des fréquences le nombre de voyelles distinctes
-        score += countDistinctVowel(wordPoposal.getWord());
-        wordPoposal.setScore(score);
+        score += countDistinctVowel(wordProposal.getWord());
+        wordProposal.setScore(score);
     }
 
     private void displayProposalsOrderedByScore() {
