@@ -61,9 +61,9 @@ public class SutomSolver {
                 if (!word.contains("'") && !word.contains("-") && word.matches(regexp)
                         && (missplacedLetters.length() == 0 || StringUtils.containsAllLetters(word, missplacedLetters))
                         && (missingLetters.length() == 0 || StringUtils.notContainsAllLetters(word, missingLetters))) {
-                    var wordPoposal = new WordProposal(word);
-                    computeScore(wordPoposal);
-                    proposals.add(wordPoposal);
+                    var wordProposal = new WordProposal(word);
+                    computeScore(wordProposal);
+                    proposals.add(wordProposal);
                 }
             });
         } catch (IOException e) {
