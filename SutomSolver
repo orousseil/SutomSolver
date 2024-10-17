@@ -1,3 +1,4 @@
 #! /bin/bash
+cd "$(dirname "$0")"
 RUN="java -classpath ./target/classes SutomSolver ${1} ${2}"
 ${RUN}
