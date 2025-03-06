@@ -13,6 +13,13 @@ class StringUtilsTest {
     }
 
     @Test
+    void removePlacedLetters() {
+        // on remplace les lettres bien placées par '_'
+        assertEquals(StringUtils.removePlacedLetters("ECOLE", "E----"), "_COLE");
+        assertEquals(StringUtils.removePlacedLetters("ECOLE", "E-OL-"), "_C__E");
+    }
+
+    @Test
     void containsAllLetters() {
         assertTrue(StringUtils.containsAllLetters("ECOLE", "COL"));
         assertFalse(StringUtils.containsAllLetters("ECOLE", "COLZ"));

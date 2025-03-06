@@ -27,7 +27,7 @@ public class StringUtils {
         return str.substring(pos + 1);
     }
 
-    public static boolean containsAllLettersWithMatch(final String str, final String letters, String match) {
+    protected static String removePlacedLetters(String str, String match) {
         // on supprime les lettres qui sont déja bien placée
         if (str.length() != match.length()) {
             throw new RuntimeException("Bad call to 'containsAllLettersWithMatch' method.");
@@ -37,10 +37,15 @@ public class StringUtils {
             if (match.charAt(i) == '-') {
                 finalStr += str.charAt(i);
             } else {
-                finalStr += '-';
+                // on remplace la lettre bien placée par '_'
+                finalStr += '_';
             }
         }
-        return containsAllLetters(finalStr, letters);
+        return finalStr;
+    }
+
+    public static boolean containsAllLettersWithMatch(final String str, final String letters, String match) {
+        return containsAllLetters(removePlacedLetters(str, match), letters);
     }
 
     public static boolean containsAllLetters(final String str, final String letters) {
@@ -55,19 +60,7 @@ public class StringUtils {
     }
 
     public static boolean notContainsAllLetters(final String str, final String letters, String match) {
-        // on supprime les lettres qui sont déja bien placée
-        if (str.length() != match.length()) {
-            throw new RuntimeException("Bad call to 'containsAllLettersWithMatch' method.");
-        }
-        String finalStr = "";
-        for (int i = 0; i < match.length(); i++) {
-            if (match.charAt(i) == '-') {
-                finalStr += str.charAt(i);
-            } else {
-                finalStr += '-';
-            }
-        }
-        return notContainsAllLetters(finalStr, letters);
+        return notContainsAllLetters(removePlacedLetters(str, match), letters);
     }
 
     public static boolean notContainsAllLetters(final String str, final String letters) {
