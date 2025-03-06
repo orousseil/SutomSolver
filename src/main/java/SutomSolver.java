@@ -53,14 +53,15 @@ public class SutomSolver {
     }
 
     private void loadDictionary() {
-        String regexp = "(?i)" + match.toUpperCase().replaceAll("\\-", ".");
+        String matchToUpper = match.toUpperCase();
+        String regexp = "(?i)" + matchToUpper.replaceAll("\\-", ".");
 
         try (Stream<String> stream = Files.lines(Paths.get("french.dic"))) {
             stream.forEach(line -> {
                 String word = unaccent(line).toUpperCase();
                 if (!word.contains("'") && !word.contains("-") && word.matches(regexp)
-                        && (missplacedLetters.length() == 0 || StringUtils.containsAllLetters(word, missplacedLetters))
-                        && (missingLetters.length() == 0 || StringUtils.notContainsAllLetters(word, missingLetters))) {
+                        && (missplacedLetters.length() == 0 || StringUtils.containsAllLettersWithMatch(word, missplacedLetters, matchToUpper))
+                        && (missingLetters.length() == 0 || StringUtils.notContainsAllLetters(word, missingLetters, matchToUpper))) {
                     var wordProposal = new WordProposal(word);
                     computeScore(wordProposal);
                     proposals.add(wordProposal);

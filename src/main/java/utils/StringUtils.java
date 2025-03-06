@@ -27,6 +27,22 @@ public class StringUtils {
         return str.substring(pos + 1);
     }
 
+    public static boolean containsAllLettersWithMatch(final String str, final String letters, String match) {
+        // on supprime les lettres qui sont déja bien placée
+        if (str.length() != match.length()) {
+            throw new RuntimeException("Bad call to 'containsAllLettersWithMatch' method.");
+        }
+        String finalStr = "";
+        for (int i = 0; i < match.length(); i++) {
+            if (match.charAt(i) == '-') {
+                finalStr += str.charAt(i);
+            } else {
+                finalStr += '-';
+            }
+        }
+        return containsAllLetters(finalStr, letters);
+    }
+
     public static boolean containsAllLetters(final String str, final String letters) {
         String lettersToUpperCase = letters.toUpperCase();
         String strToUpperCase = str.toUpperCase();
@@ -36,6 +52,22 @@ public class StringUtils {
             }
         }
         return true;
+    }
+
+    public static boolean notContainsAllLetters(final String str, final String letters, String match) {
+        // on supprime les lettres qui sont déja bien placée
+        if (str.length() != match.length()) {
+            throw new RuntimeException("Bad call to 'containsAllLettersWithMatch' method.");
+        }
+        String finalStr = "";
+        for (int i = 0; i < match.length(); i++) {
+            if (match.charAt(i) == '-') {
+                finalStr += str.charAt(i);
+            } else {
+                finalStr += '-';
+            }
+        }
+        return notContainsAllLetters(finalStr, letters);
     }
 
     public static boolean notContainsAllLetters(final String str, final String letters) {
